@@ -1,0 +1,38 @@
+
+# Create the venv
+
+```
+python3.9 -m venv .env
+source .env/bin/activate
+pip install -r requirements.txt
+```
+
+# create the credentials file
+```
+python create_token.py
+```
+
+# Test the job (expects camera named "Front Garden"), schedule this in cron.
+
+Will output .log and .jpg in current working directory. 
+
+```
+python run_blink.py
+```
+
+# Suggested cron frequencies for time lapse (During Daylight Only):
+
+1. Every 6 hours (2xday) : 8 AM and 2 PM
+   Good for slow changes
+
+2. Every 4 hours (3xday) : 8 AM, 12 PM, 4 PM
+   More natural flow, captures morning/midday/evening light
+
+3. Every 2 hours (7x/day) : 6 AM, 8 AM, 10 AM, 12 PM, 2 PM, 4 PM, 6 PM
+   Very smooth, excellent for fast plant movements like flowers opening
+
+# filtering the log
+
+```
+jq '{iso_time,temperature_c,battery_voltage}' front_garden.log
+```

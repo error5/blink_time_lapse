@@ -37,30 +37,21 @@ async def main():
     await camera.snap_picture()  # Take a new picture with the camera
     await blink.refresh()  # Get new information from server
 
+    now = datetime.now()
+    iso_time = datetime.now().replace(microsecond=0).isoformat()
+
     with open(
         "front_garden.log", "a"
     ) as file:  # log camera details trend temp and voltage in future.
-        file.write(json.dumps(camera.attributes) + "\n")
+        log_entry = camera.attributes.copy()
+        log_entry["iso_time"] = iso_time
 
-    now = datetime.now()
-    formatted = now.strftime("%Y-%m-%d-%H%M")
+        file.write(json.dumps(log_entry) + "\n")
 
-    await camera.image_to_file(f"front_garden_{formatted}.jpg")
+    await camera.image_to_file(f"front_garden_{iso_time}.jpg")
     await session.close()
 
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
-
-
-# Suggested Photo Frequency Options (During Daylight Only):
-
-# Every 6 hours (2xday) : 8 AM and 2 PM
-# Good for slow changes
-
-# Every 4 hours (3xday) : 8 AM, 12 PM, 4 PM
-# More natural flow, captures morning/midday/evening light
-
-# Every 2 hours (7x/day) : 6 AM, 8 AM, 10 AM, 12 PM, 2 PM, 4 PM, 6 PM
-# Very smooth, excellent for fast plant movements like flowers opening
