@@ -31,6 +31,10 @@ python run_blink.py
 3. Every 2 hours (7x/day) : 6 AM, 8 AM, 10 AM, 12 PM, 2 PM, 4 PM, 6 PM
    Very smooth, excellent for fast plant movements like flowers opening
 
+```
+0 8,12,16 * * * cd /opt/blink_time_lapse && /opt/blink_time_lapse/.env/bin/python3 run_blink.py
+```
+
 # filtering the log
 
 ```
