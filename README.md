@@ -37,6 +37,12 @@ python run_blink.py
 
 # filtering the log
 
+JSON
 ```
 jq '{iso_time,temperature_c,battery_voltage}' front_garden.log
+```
+
+CSV
+```
+jq -r '[.iso_time, .temperature_c, .battery_voltage] | @csv' front_garden.log
 ```
