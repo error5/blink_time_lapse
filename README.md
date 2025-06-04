@@ -1,5 +1,14 @@
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+     :target: https://github.com/psf/black
+     :alt: Code style: black
+.. image:: https://img.shields.io/badge/python-3.9-blue
+     :target: https://docs.python.org/release/3.9.23/
+     :alt: Python
+.. image:: https://img.shields.io/badge/python-3.11-blue
+     :target: https://docs.python.org/release/3.11.12/
+     :alt: Python
 
-# Create the venv
+# Create the venv (tested with 3.9 and 3.11 also works on raspbian/arm)
 
 ```
 python3.9 -m venv .env
