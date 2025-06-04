@@ -1,12 +1,6 @@
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-     :target: https://github.com/psf/black
-     :alt: Code style: black
-.. image:: https://img.shields.io/badge/python-3.9-blue
-     :target: https://docs.python.org/release/3.9.23/
-     :alt: Python
-.. image:: https://img.shields.io/badge/python-3.11-blue
-     :target: https://docs.python.org/release/3.11.12/
-     :alt: Python
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Python 3.9](https://img.shields.io/badge/python-3.9-blue)](https://docs.python.org/release/3.9.23/)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue)](https://docs.python.org/release/3.11.12/)
 
 # Create the venv (tested with 3.9 and 3.11 also works on raspbian/arm)
 
