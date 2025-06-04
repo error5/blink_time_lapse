@@ -37,8 +37,7 @@ async def main():
     await camera.snap_picture()  # Take a new picture with the camera
     await blink.refresh()  # Get new information from server
 
-    now = datetime.now()
-    iso_time = datetime.now().replace(microsecond=0).isoformat()
+    iso_time = datetime.now().replace(microsecond=0).isoformat().replace(":", "-")
 
     with open(
         "front_garden.log", "a"
@@ -53,5 +52,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    asyncio.run(main())
