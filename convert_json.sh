@@ -1,0 +1,1 @@
+jq -s '.' front_garden.log > front_garden.json
