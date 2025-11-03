@@ -1,35 +1,25 @@
 import asyncio
 import ssl
 
-from aiohttp import ClientSession, TCPConnector
+from aiohttp import ClientSession
 from blinkpy.blinkpy import Blink
+from blinkpy.auth import Auth, BlinkTwoFARequiredError
 
 CREDFILE = ".credentials"
 
-
 async def start():
-    # Create an SSL context that disables certificate verification
-    ssl_context = ssl.create_default_context()
-    ssl_context.check_hostname = False
-    ssl_context.verify_mode = ssl.CERT_NONE
-
-    # Apply the context to the aiohttp connector
-    connector = TCPConnector(ssl=ssl_context)
-    session = ClientSession(connector=connector)
-
-    blink = Blink(session=session)
-    await blink.start()
-    return blink, session
-
-
-async def main():
     """create token and save to credentials file"""
-    blink, session = await start()
+
+    blink = Blink(session=ClientSession())
+    try:
+        await blink.start()
+    except BlinkTwoFARequiredError:
+        await blink.prompt_2fa()
 
     await blink.save(CREDFILE)
 
-    await session.close()
-
+    return blink
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(start())
+
